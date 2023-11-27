@@ -1,22 +1,11 @@
-/* 04008290-89f1-11ee-8821-5f2e66b93651 
+//Borrar sin conflictos de hora registros anteriores a una fecha concreta:
+DELETE FROM audit_log
+WHERE 
+    timestamp 'epoch' + created_time * interval '1 millisecond' < '2023-11-27 08:09:15'::timestamp AT TIME ZONE 'Europe/Madrid';
+    
 
-| 1700737874233 
+//Programable con crontab para que se ejecute cada noche a las 00:00
 
-| 0b5d86f0-89ec-11ee-9c05-49e78a3f14e6 
-| 13814000-1dd2-11b2-8080-808080808080 
-| d2c50e30-89f0-11ee-8821-5f2e66b93651 
+    DELETE FROM audit_log WHERE timestamp 'epoch' + created_time * interval '1 millisecond' < CURRENT_TIMESTAMP AT TIME ZONE 'Europe/Madrid'; 
 
-| DEVICE      
-| 
-Termometro               
-
-| 0b8c5f20-89ec-11ee-9c05-49e78a3f14e6 
-| tenant@thingsboard.org   
-
-| ATTRIBUTES_UPDATED 
-| {"entityId":"d2c50e30-89f0-11ee-8821-5f2e66b93651","scope":"SERVER_SCOPE"
-,"attributes":{"pruebaAtributo":"20"}}                                                                                                                                                     
-                                                                                                                                                                                           
-                                                                                                                                                                                           
-              
-| SUCCESS       |  */
+//audit_log_1700697600000; guarda los registros de los últimos 7 días. 

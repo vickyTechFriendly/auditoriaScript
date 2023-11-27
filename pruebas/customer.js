@@ -1,12 +1,4 @@
-/* const { Sequelize, DataTypes } = require('sequelize');
-const sequelizeConfig = require('./sequelizeConfig');
-
-// Configuración de Sequelize para PostgreSQL
-const sequelize = new Sequelize(sequelizeConfig);
-
- */
-
-const connection = require("./sequelizeConfig.js");
+const connection = require("../sequelizeConfig.js");
 const Sequelize = require("sequelize");
 
 // Definición del modelo
